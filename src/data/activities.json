@@ -1,0 +1,82 @@
+[
+  {
+    "id": "15",
+    "title": "The Lord's Day",
+    "date": "2026-05-02",
+    "type": "future",
+    "description": "Celebrating the Lord's Day with the community in prayer and thanksgiving.",
+    "image": "/images/lords_day.jpg"
+  },
+  {
+    "id": "5",
+    "title": "CLP Talk 8: Transformation in Christ",
+    "date": "2026-04-25",
+    "type": "future",
+    "description": "A deep dive into how our lives are transformed through a relationship with Christ.",
+    "image": "/images/5.jpg"
+  },
+  {
+    "id": "14",
+    "title": "CLP Talk 7: Growing in the Spirit",
+    "date": "2026-04-18",
+    "type": "past",
+    "description": "How to continue growing in our relationship with the Holy Spirit.",
+    "image": "/images/talk7.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Chapter Prayer Assembly",
+    "date": "2026-04-17",
+    "type": "past",
+    "description": "A powerful gathering of our chapter in prayer and fellowship. Anchored Verse: John 20:21-22",
+    "image": "/images/4.jpg"
+  },
+  {
+    "id": "13",
+    "title": "CLP Talk 6: Empowered by the Holy Spirit",
+    "date": "2026-04-11",
+    "type": "past",
+    "description": "Understanding the role and power of the Holy Spirit in our lives.",
+    "image": "/images/talk6.jpg"
+  },
+  {
+    "id": "12",
+    "title": "CLP Talk 5: The Christian Family",
+    "date": "2026-03-28",
+    "type": "past",
+    "description": "Understanding the importance of the family in God's plan.",
+    "image": "/images/talk5.jpg"
+  },
+  {
+    "id": "11",
+    "title": "CLP Talk 4: Repentance and Faith",
+    "date": "2026-03-21",
+    "type": "past",
+    "description": "Turning away from sin and turning towards God through faith.",
+    "image": "/images/talk4.jpg"
+  },
+  {
+    "id": "10",
+    "title": "CLP Talk 3: What it Means to be a Christian",
+    "date": "2026-03-14",
+    "type": "past",
+    "description": "Exploring the core identity and calling of a follower of Christ.",
+    "image": "/images/talk3.jpg"
+  },
+  {
+    "id": "9",
+    "title": "CLP Talk 2: Who is Jesus Christ?",
+    "date": "2026-03-07",
+    "type": "past",
+    "description": "Discovering the person and mission of Jesus Christ.",
+    "image": "/images/talk2.jpg"
+  },
+  {
+    "id": "8",
+    "title": "CLP Talk 1: God's Love",
+    "date": "2026-02-28",
+    "type": "past",
+    "description": "An introduction to the unconditional and infinite love of God for us.",
+    "image": "/images/talk1.jpg"
+  }
+]

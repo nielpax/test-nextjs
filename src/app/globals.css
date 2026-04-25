@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+
+  --font-heading: var(--font-kalam), cursive;
+  --font-body: var(--font-patrick-hand), cursive;
+}
+
+:root {
+  --background: #fdfbf7;
+  --foreground: #2d2d2d;
+  --muted: #e5e0d8;
+  --accent: #ff4d4d;
+  --primary: #2d2d2d;
+  --secondary: #2d5da1;
+  --paper-bg: #ffffff;
+  --paper-bg-warm: #fff9c4;
+  --radius-wobbly: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --radius-wobbly-md: 255px 25px 225px 25px / 25px 225px 25px 255px;
+  --ink: #2d2d2d;
+  --ink-faint: rgba(45, 45, 45, 0.1);
+}
+
+[data-theme='dark'] {
+  --background: #1a1a1a;
+  --foreground: #fdfbf7;
+  --muted: #333333;
+  --accent: #ff6b6b;
+  --primary: #fdfbf7;
+  --secondary: #5da1ff;
+  --paper-bg: #2d2d2d;
+  --paper-bg-warm: #3d3a2a;
+  --ink: #fdfbf7;
+  --ink-faint: rgba(253, 251, 247, 0.1);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--primary);
+  }
+}
+
+@layer utilities {
+  .paper-texture {
+    background-image: radial-gradient(var(--muted) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .shadow-hand-drawn {
+    box-shadow: 4px 4px 0px 0px #2d2d2d;
+  }
+
+  .shadow-hand-drawn-hover {
+    box-shadow: 2px 2px 0px 0px #2d2d2d;
+  }
+
+  .btn-hand-drawn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--paper-bg);
+    border: 3px solid var(--primary);
+    color: var(--primary);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    box-shadow: 4px 4px 0px 0px var(--primary);
+    transition: all 0.1s ease-in-out;
+    border-radius: var(--radius-wobbly);
+  }
+
+  @media (min-width: 768px) {
+    .btn-hand-drawn {
+      font-size: 1.25rem;
+    }
+  }
+
+  .btn-hand-drawn:hover {
+    box-shadow: 2px 2px 0px 0px var(--primary);
+    background-color: var(--accent);
+    color: #ffffff;
+    transform: translate(2px, 2px);
+  }
+
+  .btn-hand-drawn:active {
+    box-shadow: none;
+    transform: translate(4px, 4px);
+  }
+
+  /* Remove dark theme override since it uses variables now */
+  /* [data-theme='dark'] .btn-hand-drawn {
+    background-color: var(--background);
+  } */
+
+  .card-hand-drawn {
+    background-color: var(--paper-bg);
+    border: 3px solid var(--primary);
+    box-shadow: 4px 4px 0px 0px var(--primary);
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.1s ease-in-out;
+    border-radius: var(--radius-wobbly-md);
+  }
+
+  .card-hand-drawn:hover {
+    transform: rotate(-1deg);
+  }
+
+  /* Remove dark theme override since it uses variables now */
+  /* [data-theme='dark'] .card-hand-drawn {
+    background-color: var(--background);
+  } */
+
+  .input-hand-drawn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--paper-bg);
+    border: 2px solid var(--primary);
+    font-family: var(--font-body);
+    color: var(--primary);
+    transition: all 0.1s;
+    border-radius: var(--radius-wobbly);
+  }
+
+  .input-hand-drawn:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 2px rgba(45, 93, 161, 0.2);
+  }
+
+  .input-hand-drawn::placeholder {
+    color: var(--primary);
+    opacity: 0.4;
+  }
+
+  /* Remove dark theme override since it uses variables now */
+  /* [data-theme='dark'] .input-hand-drawn {
+    background-color: var(--background);
+  } */
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33%       { transform: translateY(-30px) scale(1.05); }
+  66%       { transform: translateY(15px) scale(0.97); }
+}
+
+@keyframes scribble-fade {
+  from { opacity: 0.6; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.2); }
+}
+
+.doodle-particle {
+  pointer-events: none;
+  position: absolute;
+  filter: drop-shadow(1px 1px 0px var(--ink-faint));
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes float-note {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.animate-float-note {
+  animation: float-note 6s ease-in-out infinite;
+}
+
