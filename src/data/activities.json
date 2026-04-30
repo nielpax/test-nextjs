@@ -5,7 +5,11 @@
     "date": "2026-04-29",
     "type": "past",
     "description": "Day 1 practice sessions for upcoming worship songs, including Shine Jesus Shine, Taste and See, and The Light of Christ.",
-    "youtubeIds": ["WR3QgB-PUzk", "vo15gqPDhTs", "IUk4ZY8LhfA"]
+    "youtubeIds": [
+      "WR3QgB-PUzk",
+      "vo15gqPDhTs",
+      "IUk4ZY8LhfA"
+    ]
   },
   {
     "id": "15",
@@ -86,5 +90,12 @@
     "type": "past",
     "description": "An introduction to the unconditional and infinite love of God for us.",
     "image": "/images/talk1.jpg"
+  },
+  {
+    "id": "17",
+    "title": "Covenant Teaching",
+    "date": "2026-05-10",
+    "type": "future",
+    "description": "“Covenant teaching” is a core theme in Christian life especially in formation programs like CFC. It’s about understanding that our relationship with God is not casual  it’s a sacred commitment initiated by Him and responded to by us."
   }
 ]
