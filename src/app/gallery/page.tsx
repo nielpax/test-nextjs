@@ -1,78 +1,8 @@
+import galleryData from '@/data/gallery.json';
+
 export default function GalleryPage() {
+  const { photoGroups, videoGroups } = galleryData;
 
-  const photoGroups = [
-    {
-      label: '🙏 Household Prayer Meeting',
-      rotation: 'rotate-1',
-      photos: [
-        { id: 1, src: '/images/Household Prayer Meeting.jpg', alt: 'Household Prayer Meeting' },
-      ],
-    },
-    {
-      label: '❤️ Fellowship',
-      rotation: '-rotate-1',
-      photos: [
-        { id: 2,  src: '/images/Fellowship.jpeg',      alt: 'Fellowship' },
-        { id: 3,  src: '/images/fellowship (1).jpg',   alt: 'Fellowship' },
-        { id: 4,  src: '/images/fellowship (2).jpg',   alt: 'Fellowship' },
-        { id: 5,  src: '/images/fellowship (3).jpg',   alt: 'Fellowship' },
-        { id: 6,  src: '/images/fellowship (4).jpg',   alt: 'Fellowship' },
-        { id: 7,  src: '/images/fellowship (5).jpg',   alt: 'Fellowship' },
-        { id: 8,  src: '/images/fellowship (6).jpg',   alt: 'Fellowship' },
-        { id: 9,  src: '/images/fellowship (7).jpg',   alt: 'Fellowship' },
-        { id: 10, src: '/images/fellowship (8).jpg',   alt: 'Fellowship' },
-        { id: 11, src: '/images/fellowship (9).jpg',   alt: 'Fellowship' },
-      ],
-    },
-    {
-      label: '🎄 Christmas Party',
-      rotation: 'rotate-1',
-      photos: [
-        { id: 12, src: '/images/Christmas Party.jpeg', alt: 'Christmas Party' },
-      ],
-    },
-    {
-      label: '🎵 Worship Night',
-      rotation: '-rotate-1',
-      photos: [
-        { id: 13, src: '/images/Worship Night.jpeg', alt: 'Worship Night' },
-      ],
-    },
-    {
-      label: '📖 Christian Life Program',
-      rotation: 'rotate-1',
-      photos: [
-        { id: 14, src: '/images/Christian Life Program (1).jpg', alt: 'CLP Session' },
-        { id: 15, src: '/images/Christian Life Program (2).jpg', alt: 'CLP Fellowship' },
-        { id: 16, src: '/images/Christian Life Program (3).jpg', alt: 'CLP Talk' },
-        { id: 17, src: '/images/Christian Life Program (4).jpg', alt: 'CLP Activity' },
-        { id: 18, src: '/images/Christian Life Program (5).jpg', alt: 'CLP Group' },
-        { id: 19, src: '/images/Christian Life Program (6).jpg', alt: 'CLP Prayer' },
-        { id: 20, src: '/images/Christian Life Program (7).jpg', alt: 'CLP Graduation' },
-      ],
-    },
-  ];
-
-  const videoGroups = [
-    {
-      label: '🎄 Christmas Party Videos',
-      rotation: 'rotate-1',
-      videos: [
-        { id: 'christmas-1', src: '/images/Christmas Party (1).mp4', title: 'Christmas Party Highlights 1' },
-        { id: 'christmas-2', src: '/images/Christmas Party (2).mp4', title: 'Christmas Party Highlights 2' },
-      ],
-    },
-    {
-      label: '🎸 Practice Session',
-      rotation: '-rotate-1',
-      youtubeIds: ['Cy8VCsDtjMc', 'm69AzxM9VLw'],
-    },
-    {
-      label: '🎵 Worship Session',
-      rotation: 'rotate-1',
-      youtubeIds: ['3kYe61IUn7s', 'nA8SCP8v1ZA', 'MP-ZVmy6pAU'],
-    },
-  ];
 
   return (
     <div className="flex flex-col gap-16">

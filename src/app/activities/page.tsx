@@ -1,11 +1,90 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import activitiesData from '@/data/activities.json';
+
+type Activity = {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  description: string;
+  image?: string;
+  images?: string[];
+  youtubeId?: string;
+  youtubeIds?: string[];
+};
+
+function ActivityGallery({ images }: { images: string[] }) {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="mt-4 rounded-[12px] overflow-hidden border-[3px] border-primary shadow-hand-drawn">
+      {/* Main image */}
+      <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+        <Image
+          src={images[active]}
+          alt={`Photo ${active + 1}`}
+          fill
+          className="object-cover transition-opacity duration-300"
+          sizes="(max-width: 768px) 100vw, 700px"
+        />
+      </div>
+      {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="flex gap-2 p-2 bg-[var(--paper-bg-warm)] overflow-x-auto">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all ${
+                active === i
+                  ? 'border-accent scale-105 shadow-md'
+                  : 'border-primary/30 opacity-70 hover:opacity-100'
+              }`}
+            >
+              <Image
+                src={src}
+                alt={`Thumbnail ${i + 1}`}
+                fill
+                className="object-cover"
+                sizes="80px"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ActivitiesPage() {
   const [tab, setTab] = useState<'future' | 'past'>('future');
-  const filteredActivities = activitiesData.filter(a => a.type === tab);
+  const [todayStr, setTodayStr] = useState<string>('');
+
+  useEffect(() => {
+    const today = new Date();
+    const localDateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    setTodayStr(localDateStr);
+  }, []);
+
+  const filteredActivities = (activitiesData as Activity[])
+    .filter(a => {
+      if (!todayStr) return a.type === tab; // fallback to static type on server render
+      if (tab === 'future') {
+        return a.date >= todayStr;
+      } else {
+        return a.date < todayStr;
+      }
+    })
+    .sort((a, b) => {
+      if (tab === 'future') {
+        return a.date.localeCompare(b.date);
+      } else {
+        return b.date.localeCompare(a.date);
+      }
+    });
 
   return (
     <div className="flex flex-col gap-16 max-w-4xl mx-auto">
@@ -58,7 +137,46 @@ export default function ActivitiesPage() {
                 
                 <div className={`card-hand-drawn mt-4 ${idx % 2 === 0 ? 'rotate-1' : '-rotate-1'} p-4 md:p-6`}>
                   <h3 className="text-2xl md:text-3xl font-heading font-bold mb-2 md:mb-3">{activity.title}</h3>
-                  <p className="font-body text-base md:text-lg opacity-80">{activity.description}</p>
+                  <p className="font-body text-base md:text-lg opacity-80 mb-4">{activity.description}</p>
+
+                  {/* Photo gallery, single image, or YouTube videos */}
+                  {activity.images && activity.images.length > 1 ? (
+                    <ActivityGallery images={activity.images} />
+                  ) : activity.image ? (
+                    <div className="relative w-full rounded-[12px] overflow-hidden border-[3px] border-primary shadow-hand-drawn mt-4" style={{ aspectRatio: '16/9' }}>
+                      <Image
+                        src={activity.image}
+                        alt={activity.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                      />
+                    </div>
+                  ) : activity.youtubeIds && activity.youtubeIds.length > 0 ? (
+                    <div className="flex flex-col gap-4 mt-4">
+                      {activity.youtubeIds.map(id => (
+                        <div key={id} className="relative w-full rounded-[12px] overflow-hidden border-[3px] border-primary shadow-hand-drawn" style={{ paddingBottom: '56.25%' }}>
+                          <iframe
+                            className="absolute top-0 left-0 w-full h-full"
+                            src={`https://www.youtube.com/embed/${id}`}
+                            title={`${activity.title} - Video`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : activity.youtubeId ? (
+                    <div className="relative w-full rounded-[12px] overflow-hidden border-[3px] border-primary shadow-hand-drawn mt-4" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full"
+                        src={`https://www.youtube.com/embed/${activity.youtubeId}`}
+                        title={activity.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : null}
                 </div>
               </div>
             ))
